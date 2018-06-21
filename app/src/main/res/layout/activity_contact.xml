@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.tanganan.contentproviderdemo.ContactActivity">
+
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_contact_choose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e4e4"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_contact_01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="选择手机中的联系人"
+                android:textColor="#fd0101"/>
+
+            <TextView
+                android:id="@+id/tv_contact_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_contact_01"
+                android:layout_marginTop="10dp"
+                android:text="姓    名："
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_contact_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_contact_name_title"
+                android:layout_toRightOf="@+id/tv_contact_name_title"
+                android:textSize="16sp"/>
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@+id/tv_contact_name_title"
+                android:layout_marginTop="10dp"
+                android:background="#fff"/>
+
+            <TextView
+                android:id="@+id/tv_contact_phone_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_line"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:text="手机号："
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tv_contact_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_contact_phone_title"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/tv_contact_phone_title"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#fff"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#e6e4e4"
+            android:padding="10dp"
+            android:text="手机联系人列表"
+            android:textColor="#f00"/>
+
+        <com.example.tanganan.contentproviderdemo.custom.CustomListView
+            android:id="@+id/lv_contact_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+</ScrollView>
