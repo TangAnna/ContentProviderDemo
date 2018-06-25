@@ -37,6 +37,8 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     private Uri mContactUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
     private List<Contact> mData;
     private ContactAdapter mAdapter;
+    private View mFootView;
+    private TextView mTvAddContact;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -51,10 +53,12 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
     private void setData() {
         mListView.setAdapter(mAdapter);
+        mListView.addFooterView(mFootView);
     }
 
     private void setListener() {
         findViewById(R.id.layout_contact_choose).setOnClickListener(this);
+        mFootView.findViewById(R.id.tv_contact_add).setOnClickListener(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -71,6 +75,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void getData() {
         //TODO 动态获取权限
+        Log.d(TAG, "getData: "+mContactUri.toString());
         ContentResolver resolver = getContentResolver();
         Cursor cursor = resolver.query(mContactUri, new String[]{}, null, null, null);
         if (cursor != null && cursor.moveToFirst()) {
@@ -94,6 +99,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         mListView = (ListView) findViewById(R.id.lv_contact_list);
         mTvName = (TextView) findViewById(R.id.tv_contact_name);
         mTvPhone = (TextView) findViewById(R.id.tv_contact_phone);
+        mFootView = getLayoutInflater().inflate(R.layout.contact_foot_view, null);
     }
 
     @Override
@@ -105,6 +111,9 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
                 intent.addCategory("android.intent.category.DEFAULT");
                 intent.setType("vnd.android.cursor.dir/phone_v2");
                 startActivityForResult(intent, REQUEST_CODE);
+                break;
+            case R.id.tv_contact_add://添加联系人
+                startActivity(new Intent(this,AddContactActivity.class));
                 break;
         }
     }
